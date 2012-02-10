@@ -1,5 +1,5 @@
 <% content_for :main do %>
-<h2>Editing snippet</h2>
+<h2>Editing Gist</h2>
 <div id="snippet_edit">
 <%= form_for(@snippet) do |f| %>
   <%= errors_for(@snippet) %>
@@ -17,8 +17,9 @@
 		</div>
   </div>
   <div class="row">
-    <%= f.label :code,"Source code:" %><br />
+    <%= f.label :code,"Gist:" %><br />
 		<%= f.text_area :code, :class => "pastebox" %>
+		<span class="hint">支持MarkDown语法，</span>
   </div>
   <div class="row">
     <%= f.label :desc, "Description:" %><br />

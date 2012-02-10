@@ -7,13 +7,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   #session :session_expires => 1.week.from_now
   # Scrub sensitive parameters from your log
-  before_filter :init_filter
+  before_filter :init_filter, :set_theme_name
 
   def init_filter
   	check_login
 
   	if not /user\/register|user\/login|user\/logout/.match(request.env["HTTP_REFERER"])
       session[:referer] = request.env["HTTP_REFERER"]
+    end
+  end
+
+  def set_theme_name
+    unless session[:theme_name].blank?
+        @theme_name = session[:theme_name]
     end
   end
 
@@ -30,9 +36,9 @@ class ApplicationController < ActionController::Base
   # 设置SEO 的Meta 值
   def set_seo_meta(title,keywords = '',desc = '')
     if title
-      @page_title =  "#{title} &raquo; Pasite"
+      @page_title =  "#{title} &raquo; Gist"
     else
-      @page_title = "Pasite"
+      @page_title = "Gist"
     end
     @meta_keywords = keywords
     @meta_description = desc

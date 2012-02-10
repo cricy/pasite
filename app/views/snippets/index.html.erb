@@ -9,11 +9,11 @@
     <%= will_paginate @snippets %>
   </div>
   <div class="total">
-    There have <%= @snippets_count %> pasites 
+    There have <%= @snippets_count %> pasites
   </div>
   <% @snippets.each do |snippet| %>
   <div class="item clearfix">
-    <div class="when">      
+    <div class="when">
       <span class="typo_date" title="<%= snippet.created_at %>"><%= snippet.created_at.to_s(:short_time_string) %></a>
       <% if !snippet.user.blank? %>
         by <%= link_to (truncate(snippet.user.name,:length => 10)) ,:action => "index", :login => snippet.user.login %>
@@ -21,8 +21,8 @@
             by Anonymous
         <% end %>
     </div>
-    <div class="link">      
-      #<%= snippet.id %> <%= link_to (truncate(h(snippet.title),:length => 50)), snippet %> 
+    <div class="link">
+      #<%= snippet.id %> <%= link_to (truncate(h(snippet.title),:length => 50)), snippet %>
 			<%= image_tag("icons/private.gif",:alt => "Private", :title => "This is private snippet, it's only for owner.") if snippet.private %>
             <span class="lang">[<%= snippet.language.name %>]</span>
             <span  class="count">(<%= snippet.line_count %> lines,<%= snippet.comments_count %> comments)</span>
@@ -33,7 +33,7 @@
     </div>
 		<% end %>
   </div>
-  <% end %>  
+  <% end %>
   <div class="pages">
     <%= will_paginate @snippets %>
   </div>
@@ -44,33 +44,33 @@
   <div class="box" id="right_profile">
     <h3>Profile</h3>
     <ul>
-      <li>        
+      <li>
         <img src="<%= face_url(@user.email) %>" alt="<%= h @user.name %>'s face" />
-      </li>   
+      </li>
       <li><label>Name:</label> <%=h @user.name %></li>
       <li class="clearfix"><%= @user.snippets_count %> <label>snippts</label>, <%= @user.comments_count %> <label>comments</label></li>
       <li><label>Blog:</label> <a href="<%= h @user.url %>" target="_blank"><%=h @user.url %></a></li>
       <li><label>Bio:</label> <%=h @user.bio %></li>
     </ul>
-  </div>    
+  </div>
   <% else %>
 	<div class="box" id="search_box">
 		<form action="<%= search_snippets_path %>" method="get">
 			<label for="search_key">Search:</label><br />
-      <input type="text" name="s" value="<%= h params[:s] %>" id="search_key"> 
-      <input type="submit" value="Go" /> 
+      <input type="text" name="s" value="<%= h params[:s] %>" id="search_key">
+      <input type="submit" value="Go" />
 		</form>
 	</div>
-  <div class="box" id="right_top_languages">    
+  <div class="box" id="right_top_languages">
     <h3>Top Languages</h3>
     <ul>
       <% if !@top_languages.blank? %>
         <% for item in @top_languages%>
           <li><%= link_to (h item.name), :controller => "snippets", :action => "index", :lang => item.slug %> <span class="count">(<%= item.snippets_count %>)</span></li>
         <% end %>
-      <% end %>      
+      <% end %>
     </ul>
-  </div>  
+  </div>
     <% if @snippets.size > 1 %>
   <div class="box" id="right_top_users">
     <h3>Top Users</h3>
@@ -78,8 +78,8 @@
       <% if !@top_users.blank? %>
         <% for item in @top_users  %>
           <li><%= link_to (h item.name), :controller => "snippets", :action => "index", :login => item.login %> <span class="count">(<%= item.snippets_count %>)</span></li>
-        <% end %>      
-      <% end %>      
+        <% end %>
+      <% end %>
     </ul>
   </div>
     <% end %>
@@ -90,8 +90,8 @@
           <% if !@recent_comments.blank? %>
             <% for item in @recent_comments  %>
               <li><%= link_to (truncate(h(item.title),:length => 10)), :controller => "snippets", :action => "show", :id => item.commentable_id %>: <%= truncate(h(item.comment),:length => 40) %></li>
-            <% end %>      
-          <% end %>      
+            <% end %>
+          <% end %>
         </ul>
       </div>
     <% end %>

@@ -36,8 +36,8 @@ class Snippet < ActiveRecord::Base
     @skip_before_filter = skip_before_filter
   end
 
-	# before_filters
-	def format_code
+	# before_filters  old
+	def format_code_old
     if not self.skip_before_filter
       self.size = self.code.length
       self.code_formatted = Highlight.format(self.code,self.language.slug)
@@ -47,12 +47,24 @@ class Snippet < ActiveRecord::Base
     end
 	end
 
+  # before_filters
+	def format_code
+    if not self.skip_before_filter
+      self.size = self.code.length
+      self.code_formatted = MarkdownConverter.convert(self.code)
+      code_lines = self.code.gsub("\r\n","\n").split("\n")
+      self.line_count = code_lines.length
+      self.summary_formatted = MarkdownConverter.convert(code_lines[0..5].join("\n"))
+    end
+	end
+
 	def size_kb
 		f = sprintf("%0.2f",self.size / 1024)
 		return "#{f} KB"
 	end
 
 	def code_formatted_show
+    return code_formatted.html_safe
     if code_formatted.index('<table class="highlighttable">')
       code_formatted.gsub('<div class="highlight">','<div class="inner_code">')
     end

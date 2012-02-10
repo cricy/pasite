@@ -24,30 +24,30 @@ class SnippetsController < ApplicationController
       if @language
         @snippets = @language.snippets.find_page(params[:page])
         @snippets_count = @language.snippets.count
-        @sub_title = "Listing snippets in #{@language.name} language"
+        @sub_title = "Listing Gist in #{@language.name} language"
         @feed_title = "#{@language.name}"
-        set_seo_meta("Snippets &raquo; #{@language.name} language")
+        set_seo_meta("Gist &raquo; #{@language.name} language")
       end
     elsif params[:tag]
       @snippets = Snippet.tagged_with(params[:tag],:on => :tags).find_page(params[:page])
       @snippets_count = Snippet.tagged_with(params[:tag],:on => :tags).count(:select => "*")
-      @sub_title = "Listing #{params[:tag]} snippets"
+      @sub_title = "Listing #{params[:tag]} Gist"
       @feed_title = "#{params[:tag]}"
-      set_seo_meta("Snippets &raquo; Taged #{params[:tag]}")
+      set_seo_meta("Gist &raquo; Taged #{params[:tag]}")
     elsif params[:login]
       @user = User.find_by_login(params[:login])
       if @user
         @snippets = @user.snippets.find_page(params[:page])
         @snippets_count = @user.snippets_count
-        @sub_title = "Listing #{@user.name}'s snippets"
-        @feed_title = "#{@user.name}'s snippets"
-        set_seo_meta("#{@user.name}'s snippets")
+        @sub_title = "Listing #{@user.name}'s gists"
+        @feed_title = "#{@user.name}'s gists"
+        set_seo_meta("#{@user.name}'s gists")
       end
     else
       @snippets = Snippet.find_page(params[:page])
       @snippets_count = Snippet.count
-      @sub_title = "Listing snippets"
-      @feed_title = "Recent snippets"
+      @sub_title = "Listing Gists"
+      @feed_title = "Recent Gists"
       set_seo_meta(nil)
     end
 
@@ -117,7 +117,7 @@ class SnippetsController < ApplicationController
   # GET /snippets/new.xml
   def new
     @snippet = Snippet.new
-    set_seo_meta("New snippet")
+    set_seo_meta("New gist")
     respond_to do |format|
       format.html { render :action => "edit" } # new.html.erb
       format.xml  { render :xml => @snippet }
@@ -127,7 +127,7 @@ class SnippetsController < ApplicationController
   # GET /snippets/1/edit
   def edit
     @snippet = Snippet.find(params[:id])
-    set_seo_meta("Edit snippet")
+    set_seo_meta("Edit gist")
   end
 
   # POST /snippets
@@ -160,7 +160,7 @@ class SnippetsController < ApplicationController
 
     respond_to do |format|
       if @snippet.update_attributes(params[:snippet])
-        success_notice('Snippet was successfully updated.')
+        success_notice('Gist was successfully updated.')
         format.html { redirect_to(@snippet) }
         format.xml  { head :ok }
       else
@@ -175,7 +175,7 @@ class SnippetsController < ApplicationController
   def destroy
     @snippet = Snippet.find(params[:id])
     @snippet.destroy
-    success_notice("Snippet was deleted.")
+    success_notice("Gist was deleted.")
 
     respond_to do |format|
       format.html { redirect_to(snippets_url) }
@@ -195,7 +195,7 @@ class SnippetsController < ApplicationController
             :per_page => 8,
             :include => [:user,:language])
     @snippets_count = @snippets.count
-    @sub_title = "Search snippets by \"#{params[:s]}\""
+    @sub_title = "Search gists by \"#{params[:s]}\""
     render :action => "index"
 
   end

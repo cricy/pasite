@@ -11,7 +11,7 @@ class CreateLanguages < ActiveRecord::Migration
 
 		# init languages data
 		languages = [
-						{:name => "ActionScript", :slug => "as3", :snippets_count => 0},	
+						{:name => "ActionScript", :slug => "as3", :snippets_count => 0},
 						{:name => "Apache Config file (.conf)",:slug => "apacheconf", :snippets_count => 0},
 						{:name => "AppleScript",:slug => "applescript", :snippets_count => 0},
 						{:name => "BBCode",:slug => "bbcode", :snippets_count => 0},
@@ -34,14 +34,14 @@ class CreateLanguages < ActiveRecord::Migration
 						{:name => "Debian Sourcelist",:slug => "sourceslist", :snippets_count => 0},
 						{:name => "Delphi",:slug => "delphi", :snippets_count => 0},
 						{:name => "Diff",:slug => "diff", :snippets_count => 0},
-						{:name => "Django",:slug => "django", :snippets_count => 0},						
+						{:name => "Django",:slug => "django", :snippets_count => 0},
 						{:name => "Erlang",:slug => "erlang", :snippets_count => 0},
 						{:name => "Fortran",:slug => "fortran", :snippets_count => 0},
 						{:name => "HTML",:slug => "html", :snippets_count => 0},
 						{:name => "HTML Ruby (.erb)",:slug => "erb", :snippets_count => 0},
 						{:name => "HTML Cheetah",:slug => "html+cheetah", :snippets_count => 0},
 						{:name => "HTML Django",:slug => "html+django", :snippets_count => 0},
-						{:name => "HTML PHP",:slug => "html+php", :snippets_count => 0},						
+						{:name => "HTML PHP",:slug => "html+php", :snippets_count => 0},
 						{:name => "HTML Smarty",:slug => "html+smarty", :snippets_count => 0},
 						{:name => "Haskell",:slug => "haskell", :snippets_count => 0},
 						{:name => "INI",:slug => "ini", :snippets_count => 0},
@@ -62,8 +62,7 @@ class CreateLanguages < ActiveRecord::Migration
 						{:name => "Nginx configuration file",:slug => "nginx", :snippets_count => 0},
 						{:name => "PHP",:slug => "php", :snippets_count => 0},
 						{:name => "Perl",:slug => "perl", :snippets_count => 0},
-						{:name => "Plain text",:slug => "text", :snippets_count => 0},
-						{:name => "Python",:slug => "python", :snippets_count => 0},						
+						{:name => "Python",:slug => "python", :snippets_count => 0},
 						{:name => "RHTML",:slug => "rhtml", :snippets_count => 0},
 						{:name => "Ruby",:slug => "rb", :snippets_count => 0},
 						{:name => "Ruby irb session",:slug => "rbcon", :snippets_count => 0},
@@ -74,12 +73,28 @@ class CreateLanguages < ActiveRecord::Migration
 						{:name => "Squid Config file",:slug => "squidconf", :snippets_count => 0},
 						{:name => "SQL",:slug => "sql", :snippets_count => 0},
 						{:name => "Tcl",:slug => "tcl", :snippets_count => 0},
-						{:name => "TeX",:slug => "tex", :snippets_count => 0},						
+						{:name => "TeX",:slug => "tex", :snippets_count => 0},
 						{:name => "Vim file",:slug => "vim", :snippets_count => 0},
 						{:name => "XML",:slug => "xml", :snippets_count => 0},
 						{:name => "XSLT",:slug => "xslt", :snippets_count => 0},
-						{:name => "YAML",:slug => "yaml", :snippets_count => 0},
+						{:name => "YAML",:slug => "yaml", :snippets_count => 0}
 						]
+
+
+
+
+    languages = [
+      {:name => "JavaScript",:slug => "js", :snippets_count => 0},
+      {:name => "ActionScript", :slug => "as3", :snippets_count => 0},
+      {:name => "Bash",:slug => "bash", :snippets_count => 0},
+      {:name => "CSS",:slug => "css", :snippets_count => 0},
+      {:name => "HTML",:slug => "html", :snippets_count => 0},
+			{:name => "HTML Ruby (.erb)",:slug => "erb", :snippets_count => 0},
+      {:name => "HTML PHP",:slug => "html+php", :snippets_count => 0},
+      {:name => "PHP",:slug => "php", :snippets_count => 0},
+			{:name => "Plain text",:slug => "text", :snippets_count => 0},
+      {:name => "Ruby",:slug => "rb", :snippets_count => 0}
+    ]
 		languages.each do |l|
 			l = Language.new(l)
 			l.save

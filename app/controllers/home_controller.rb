@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 				return
 			end
 		end
-		#set_seo_meta("Register")
+		set_seo_meta("Register")
 		render :action => "register"
 
 	end

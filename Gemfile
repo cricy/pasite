@@ -15,6 +15,10 @@ gem "acts_as_commentable", "3.0.1"
 gem "rails_autolink", "1.0.4"
 gem "rails-i18n","0.1.8"
 
+# Markdown 格式
+gem "redcarpet", "2.0.0"
+gem "pygments.rb", "0.2.4"
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,3 +46,5 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
+
+gem 'thin'

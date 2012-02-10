@@ -1,8 +1,4 @@
-<% content_for :styles do %>
-    <%= stylesheet_link_tag "themes/#{@theme_name}.css" %>
-<% end %>
-<% content_for :scripts do %>
-<% end %>
+
 <% content_for :main do %>
 <%= notice_message %>
 <h2>#<%= @snippet.id %> <%=h @snippet.title %> <%= image_tag("icons/private.gif",:alt => "Private") if @snippet.private %></h2>
