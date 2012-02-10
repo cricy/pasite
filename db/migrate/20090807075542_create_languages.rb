@@ -10,7 +10,7 @@ class CreateLanguages < ActiveRecord::Migration
     end
 
 		# init languages data
-		languages = [
+		languages_old = [
 						{:name => "ActionScript", :slug => "as3", :snippets_count => 0},
 						{:name => "Apache Config file (.conf)",:slug => "apacheconf", :snippets_count => 0},
 						{:name => "AppleScript",:slug => "applescript", :snippets_count => 0},

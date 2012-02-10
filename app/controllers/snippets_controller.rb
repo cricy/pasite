@@ -2,9 +2,9 @@
 class SnippetsController < ApplicationController
   # GET /snippets
   # GET /snippets.xml
-  before_filter :require_login, :only => [:edit,:update,:destroy]
+  before_filter :require_login, :only => [:edit,:update,:destroy, :new]
   before_filter :init_sidebar, :only => [:index, :search]
-  validates_captcha
+  #validates_captcha
 
   private
   def init_sidebar
@@ -190,11 +190,20 @@ class SnippetsController < ApplicationController
       return
     end
 
+    begin
     @snippets = Snippet.search(params[:s].split("\s"),
             :page => params[:page],
             :per_page => 8,
             :include => [:user,:language])
     @snippets_count = @snippets.count
+    rescue Riddle::ConnectionError
+      `cd #{Rails.root} && bundle exec rake RAILS_ENV=#{Rails.env} ts:restart`
+      @snippets = Snippet.search(params[:s].split("\s"),
+            :page => params[:page],
+            :per_page => 8,
+            :include => [:user,:language])
+      @snippets_count = @snippets.count
+    end
     @sub_title = "Search gists by \"#{params[:s]}\""
     render :action => "index"
 
