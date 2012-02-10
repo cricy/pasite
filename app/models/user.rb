@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :name,:login, :passwd, :email
 	validates_uniqueness_of :login,:email
 	validates_length_of :name, :within => 2..20
-  validates_length_of :login, :within => 4..50
+  validates_length_of :login, :within => 2..50
   validates_format_of :login, :with => /^[\w\d\-\_\.]+$/, :message => "格式不符合要求(字母、数字、-、_)"
 
 	def self.encode(passwd)
