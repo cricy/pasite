@@ -1,4 +1,13 @@
 # encoding: utf-8
+
+def compile_asset?(path)
+  if File.basename(path) =~ /^[^_].*\.\w+$/
+    true
+  else
+    false
+  end
+end
+
 Pasite::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -45,6 +54,7 @@ Pasite::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  config.assets.precompile = [ method(:compile_asset?).to_proc ]
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
