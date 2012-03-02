@@ -105,10 +105,6 @@
 		<label>Language</label><br />
 		<%= link_to (h @snippet.language.name), :controller => "snippets", :action => "index", :lang => @snippet.language.slug %>
 	</p>
-	<p class="box">
-		<label>File size<label><br />
-		<%=h @snippet.size_kb %>
-	</p>
   <p class="box">
     <label>Views count<label><br />
     <%=h @snippet.views_count  %>

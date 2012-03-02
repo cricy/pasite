@@ -428,6 +428,7 @@ width:99%;
 .linenos { padding:0 5px; text-align:right; color:#999; }
 .highlight td.code { width:100%; }
 .highlight_top { margin-bottom:5px; font-size:11px; text-align:right; padding-right:8px; display:none; }
+.highlight pre{overflow:auto;}
 .highlight .c { color: #919191; } /* Comment */
 .highlight .err {} /* Error */
 .highlight .k { color: #FF5600 } /* Keyword */
